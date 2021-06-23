@@ -1,0 +1,14 @@
+@media only screen and (max-width: 600px) {
+    .footer-style {
+      margin-top: 340px;
+      width: 100%;
+      margin-left: 7%;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .contact-style {
+      margin-top: 340px;
+      width: 100%;
+      margin-left: 7%;
+    }
+  }

@@ -1,0 +1,16 @@
+.gird{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 2%;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .gird {
+      display:grid;
+      grid-template-columns: auto;
+      /* margin-left: 10%; */
+      
+    }
+  }
+  
