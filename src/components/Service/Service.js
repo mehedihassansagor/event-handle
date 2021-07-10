@@ -7,20 +7,7 @@ const Service = () => {
   useEffect(() => {
     fetch("http://localhost:5000/event")
       .then((res) => res.json())
-      .then((data) => {
-        if (data.length === 0) {
-          <button class="btn btn-primary" type="button" disabled>
-            <span
-              class="spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            Loading...
-          </button>;
-        }
-
-        else setService(data);
-      });
+      .then((data) => setService(data));
   }, [service.name]);
   return (
     <div className="gird mt-4 ">
@@ -28,7 +15,6 @@ const Service = () => {
         service.map((event) => (
           <ServiceCart event={event}></ServiceCart>
         ))
-        // service.map(event=> <li>{event.name}</li>)
       }
     </div>
   );

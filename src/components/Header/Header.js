@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
+import "./Header.css";
 
 const Header = () => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            Navbar
-          </a>
+          <Link class="navbar-brand ps-4 pe-4 link-style">Event Maker</Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -20,30 +23,33 @@ const Header = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item bar-hover">
+                <Link class="nav-link ps-4 pe-4 link-style " to="/home">
+                  Home
+                </Link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/contact">
-                  Contact
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
+              <li class="nav-item bar-hover">
+                <Link class="nav-link ps-4 pe-4 link-style" to="/dashboard">
                   DashBoard
-                </a>
+                </Link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">
+              <li class="nav-item bar-hover">
+                <Link class="nav-link ps-4 pe-4 link-style" to="/login">
                   logIn
-                </a>
+                </Link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/peopleData">
-                  People
-                </a>
-              </li>
+              {loggedInUser.email && (
+                <li class="nav-item bar-hover">
+                  <button
+                    type="button"
+                    className="btn btn-outline-warning ps-4 pe-4 link-style"
+                    onClick={() => setLoggedInUser({})}
+                  >
+                    LogOut
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>

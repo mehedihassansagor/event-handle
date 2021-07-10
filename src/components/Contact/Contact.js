@@ -32,7 +32,7 @@ const Contact = () => {
         <span style={{ color: "salmon" }}>m</span>e..
       </h3>
       <div className="row">
-        <div className="col-md-6 animate__animated animate__fadeInTopLeft">
+        <div className="col-md-6">
           <p className="mt-5" style={{fontWeight: "bold",color: "green"}}>
             Event-maker.com, Inc. is an American multinational technology company
             which focuses on e-commerce, cloud computing, digital streaming, and
@@ -41,7 +41,7 @@ const Contact = () => {
             Microsoft, and Facebook
           </p>
         </div>
-        <div className="col-md-6  animate__animated animate__fadeInTopRight ">
+        <div className="col-md-6">
           <form className="contact-form p-3 " onSubmit={sendEmail}>
             <input
               className="form-control"

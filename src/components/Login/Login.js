@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import GoogleButton from "react-google-button";
 import firebase from "firebase/app";
@@ -7,124 +7,158 @@ import firebaseConfig from "./Firebase.config";
 import { useContext } from "react";
 import { UserContext } from "../../App";
 import { useHistory, useLocation } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(firebaseConfig);
 }
 
-
 const Login = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext)
-  const history = useHistory()
-  const location = useLocation()
+  const [admins, setAdmins] = useState([]);
+  const [error, setError] = useState("none");
+
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
+  const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
 
   const handleGoogle = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
 
-    firebase.auth()
-  .signInWithPopup(provider)
-  .then((result) => {
-    var credential = result.credential;
-   var token = credential.accessToken;
-    const {displayName,email}  = result.user;
-    const singnedInUser = { name : displayName, email}
-    setLoggedInUser(singnedInUser)
-    history.replace(from)
-    
-  }).catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var email = error.email;
-    var credential = error.credential;
-  });
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        var credential = result.credential;
+        var token = credential.accessToken;
+        const { displayName, email } = result.user;
+        const singnedInUser = { name: displayName, email };
+        setLoggedInUser(singnedInUser);
+        history.replace(from);
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
 
+    console.log("google click");
+  };
+  useEffect(() => {
+    fetch("http://localhost:5000/adminDetails")
+      .then((res) => res.json())
+      .then((data) => setAdmins(data));
+  }, []);
 
-    console.log("google click")
-  }
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data, event) => {
+    admins.forEach((admin) => {
+      if (data.email === admin.email && data.password === admin.password) {
+        const signedInUser = {
+          isSignedIn: true,
+          displayName: admin.name,
+          email: admin.email,
+          password: admin.password,
+        };
+        setLoggedInUser(signedInUser);
+        setError("none");
+        history.replace(from);
+      } else {
+        setError("block");
+      }
+    });
+  };
   return (
-    <div className="body-style">
-      <div class="container px-4 py-5 mx-auto">
-        <div class="card card0">
-          <div class="d-flex flex-lg-row flex-column-reverse">
-            <div class="card card1">
-              <div class="row justify-content-center my-auto">
-                <div class="col-md-8 col-10 my-5">
-                  <div class="row justify-content-center px-3 mb-3">
-                    {" "}
-                    <img id="logo" src="" />{" "}
-                  </div>
-                  <h3 class="mb-5 text-center heading">We are Tidi</h3>
-                  <h6 class="msg-info">Please login to your account</h6>
-                  <div class="form-group">
-                    {" "}
-                    <label class="form-control-label text-muted">
-                      Username
-                    </label>{" "}
-                    <input
-                      type="text"
-                      id="email"
-                      name="email"
-                      placeholder="Phone no or email id"
-                      class="form-control"
-                    />{" "}
-                  </div>
-                  <div class="form-group">
-                    {" "}
-                    <label class="form-control-label text-muted">
-                      Password
-                    </label>{" "}
-                    <input
-                      type="password"
-                      id="psw"
-                      name="psw"
-                      placeholder="Password"
-                      class="form-control"
-                    />{" "}
-                  </div>
-                  <div class="row justify-content-center my-3 px-3">
-                    {" "}
-                    <button class="btn-block btn-color">
-                      Login to event
-                    </button>{" "}
-                    
-                  </div>
-                  <div class="row justify-content-center my-2">
-                    {" "}
-                    <a href="#">
-                      <small class="text-muted">Forgot Password?</small>
-                    </a>{" "}
-                    <br />
-                    <br />
-                    
-                    <GoogleButton
-                      onClick={handleGoogle}
-                    />
-                  </div>
-                 
-                </div>
-              </div>
-              <div class="bottom text-center mb-5">
-                <p href="#" class="sm-text mx-auto mb-3">
-                  Don't have an account?
-                  <button class="btn btn-white ml-2">Create new</button>
-                </p>
-              </div>
+    <div className=" back-ground" style={{height:"666px"}}>
+    <div className="row container ">
+      <div className="col-md-2"></div>
+      <div className="col-md-10">
+        <div className="container pt-5 mt-5 col-md-6">
+          <div className="row">
+            <div className="text-center" style={{}}>
+              <span>
+                For admin email: admin@admin.com <br /> password:29292939
+                <br />
+                Normal user please use google login button
+              </span>
             </div>
-            <div class="card card2">
-              <div class="my-auto mx-md-5 px-md-5 right">
-                <h3 class="text-white">We are more than just a company</h3>{" "}
-                <small class="text-white">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </small>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-group pb-3">
+                <label htmlFor="email" className="pb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="e.g example@example.com"
+                  aria-invalid={errors.email ? "true" : "false"}
+                  {...register("email", { required: true })}
+                  id="email"
+                  className="form-control"
+                  autoComplete="off"
+                />
+                {errors.email && (
+                  <span role="alert" className="text-danger">
+                    {" "}
+                    Email required{" "}
+                  </span>
+                )}
               </div>
-            </div>
+
+              <div className="form-group">
+                <label htmlFor="password" className="pb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="e.g At least 8 character"
+                  aria-invalid={errors.password ? "true" : "false"}
+                  {...register("password", { required: true, minLength: 8 })}
+                  id="password"
+                  className="form-control"
+                  autoComplete="off"
+                />
+                {errors.password && (
+                  <span role="alert" className="text-danger">
+                    {" "}
+                    Password required & must contain at least 8 character{" "}
+                  </span>
+                )}
+              </div>
+
+              <br />
+
+              <div
+                className="form-group pb-3 text-center"
+                style={{ display: error }}
+              >
+                <span style={{ color: "red" }}>
+                  Email or Password In-Correct
+                </span>
+              </div>
+
+              <div className="form-group pb-3">
+                <input
+                  type="submit"
+                  name="submitLogin"
+                  className="btn btn-primary form-control"
+                />
+              </div>
+              <div className="d-flex justify-content-center">
+                <GoogleButton onClick={handleGoogle} />
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

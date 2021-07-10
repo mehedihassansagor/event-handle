@@ -49,12 +49,12 @@ const AddEvent = () => {
       });
   };
   return (
-    <div className="row">
+    <div className="row container">
       <div className="col-md-4 ">
         <Sidebar />
       </div>
 
-      <div className="col-md-6 ">
+      <div className="col-md-8 ">
         <form align="center" onSubmit={handleSubmit(onSubmit)}>
           <h1>Add services</h1>
           <input
@@ -65,6 +65,7 @@ const AddEvent = () => {
           <br />
           <br />
           <textarea
+          style={{height:"300px"}}
             name="description"
             placeholder="description"
             {...register("description")}
@@ -84,9 +85,6 @@ const AddEvent = () => {
             SUBMIT
           </button>
         </form>
-      </div>
-      <div className="col-md-2">
-
       </div>
     </div>
   );

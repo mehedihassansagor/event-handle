@@ -1,18 +1,1 @@
-.btn-style{
-    width:80%;
-    height:10%;
-}
 
-/* .image-style {
-  width: 100px;
-  transition: width 2s;
-}
-
-.image-style:hover {
-  width: 300px;
-} */
-@media only screen and (max-width: 600px) {
-    .btn-style {
-      width:100%;
-    }
-  }

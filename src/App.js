@@ -1,21 +1,22 @@
 import React, { createContext, useState } from "react";
 import Home from "./components/Home/Home";
-import AddAdmin from "./components/AddAdmin/AddAdmin"
+import AddAdmin from "./components/AddAdmin/AddAdmin";
 import PeopleData from "./components/People/PeopleData";
-import Contact from "./components/Contact/Contact"
+import Contact from "./components/Contact/Contact";
+import Order from "./components/Order/Order";
+import ManageService from "./components/ManageService/ManageService";
 
-import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AddEvent from "./components/AddEvent/AddEvent";
 import DashBoard from "./components/DashBoard/DashBoard";
-import Login from "./components/Login/Login"
+import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import CustomerOrder from "./components/CustomerOrder/CustomerOrder"
 
 export const UserContext = createContext();
 
 function App() {
-
-  const [loggedInUser,setLoggedInUser] =useState({})
-  
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
@@ -30,9 +31,12 @@ function App() {
           <Route path="/addEvent">
             <AddEvent />
           </Route>
-          <PrivateRoute path="/dashboard">
+          <Route path="/dashBoard/:_id">
             <DashBoard />
-          </PrivateRoute>
+          </Route>
+          <Route path="/dashBoard">
+            <DashBoard />
+          </Route>
           <Route path="/addAdmin">
             <AddAdmin />
           </Route>
@@ -44,6 +48,15 @@ function App() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/order">
+            <Order />
+          </Route>
+          <Route path="/manageService">
+            <ManageService />
+          </Route>
+          <Route path="/customerOrder">
+            <CustomerOrder />
           </Route>
         </Switch>
       </Router>

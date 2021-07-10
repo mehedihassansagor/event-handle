@@ -9,7 +9,7 @@ import './Home.css'
 
 const Home = () => {
     return (
-        <div >
+        <div>
              <Header />
              <Service />
              <div className="contact-style">

@@ -1,0 +1,11 @@
+.bar-hover:hover{
+border-left: 2px solid black;
+border-right: 2px solid black;
+background-attachment: fixed;
+}
+.link-style{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 700;
+    color:burlywood;
+    font-size:larger;
+}
