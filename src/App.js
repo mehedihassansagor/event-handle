@@ -12,6 +12,7 @@ import DashBoard from "./components/DashBoard/DashBoard";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CustomerOrder from "./components/CustomerOrder/CustomerOrder"
+import "./App.css"
 
 export const UserContext = createContext();
 
@@ -31,12 +32,12 @@ function App() {
           <Route path="/addEvent">
             <AddEvent />
           </Route>
-          <Route path="/dashBoard/:_id">
+          <PrivateRoute path="/dashBoard/:_id">
             <DashBoard />
-          </Route>
-          <Route path="/dashBoard">
+          </PrivateRoute>
+          <PrivateRoute path="/dashBoard">
             <DashBoard />
-          </Route>
+          </PrivateRoute>
           <Route path="/addAdmin">
             <AddAdmin />
           </Route>

@@ -1,0 +1,11 @@
+.slider-description{
+    position: absolute;
+    z-index: 1;
+    /* height: 200px; */
+    top: 70%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    color:white;
+    font-weight: 200;
+    font-size:20px;
+}

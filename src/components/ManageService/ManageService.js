@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Sidebar from './../Sidebar/Sidebar';
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import Sidebar from "./../Sidebar/Sidebar";
 
 const ManageService = () => {
-    const [services, setService] = useState([]);
+  const [services, setService] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/event")
       .then((res) => res.json())
@@ -18,18 +20,18 @@ const ManageService = () => {
         if (data) {
           const newOrder = services.filter((service) => service._id !== id);
           setService(newOrder);
-        console.log(newOrder);
+          console.log(newOrder);
         }
       })
-      .catch((err) => {})
+      .catch((err) => {});
   };
 
-    return (
-        <div className="row container">
-            <div className="col-md-3">
-                <Sidebar />
-            </div>
-            <div className="col-md-9">
+  return (
+    <div className="row container">
+      <div className="col-md-3">
+        <Sidebar />
+      </div>
+      <div className="col-md-9">
         <table className="table">
           <thead>
             <tr>
@@ -45,17 +47,21 @@ const ManageService = () => {
                 <td>{service.price}</td>
                 <td>{service.user}</td>
                 <td>
-                  <button onClick={() => deleteOrder(service._id)}>DELETE</button>
+                  <button
+                    className="btn btn-outline-secondary"
+                    onClick={() => deleteOrder(service._id)}
+                  >
+                    <FontAwesomeIcon icon={faMinusCircle} />
+                    &nbsp; DELETE
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-            
-            
-        </div>
-    );
+    </div>
+  );
 };
 
 export default ManageService;

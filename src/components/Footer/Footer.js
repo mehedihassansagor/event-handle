@@ -7,16 +7,19 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <div class="footer-dark mt-5">
+        <div class="footer-dark">
             <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Services</h3>
                         <ul>
-                            <li><a href="#">Training</a></li>
-                            <li><a href="#">Repair</a></li>
-                            <li><a href="#">selling</a></li>
+                            <li><>Interior Design</></li>
+                            <li><>Interior Design in shop</></li>
+                            <li><>Interior Design in office</></li>
+                            <li><>Wedding Planners</></li>
+                            <li><>Birthday Party Planning</></li>
+                            <li><>Company Parte</></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
@@ -28,7 +31,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div class="col-md-6 item text">
-                        <h3>Two Wheelers</h3>
+                        <h3>Event Maker</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium temporibus id libero sit vel exercitationem rem, tempora accusamus saepe beatae odit optio officiis laboriosam voluptates nobis vitae perspiciatis ullam ut.</p>
                     </div>
                     <div class="col item social">

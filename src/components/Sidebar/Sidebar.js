@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import {
   faAlignJustify,
+  faArchive,
   faEject,
   faHouseUser,
   faPlusSquare,
@@ -29,7 +30,7 @@ const Sidebar = () => {
           &nbsp; Home
         </Link>
         <Link to="/customerOrder">
-          <FontAwesomeIcon icon={faHouseUser} />
+          <FontAwesomeIcon icon={faArchive} />
           &nbsp; Order
         </Link>
         {loggedInUser.email==="admin@admin.com" && (

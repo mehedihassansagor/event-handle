@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Order = () => {
   const [orders, setOrder] = useState([]);
   //   console.log(orders);
@@ -49,7 +52,13 @@ const Order = () => {
                 <td>{order.time}</td>
                 <td>{order.email}</td>
                 <td>
-                  <button onClick={() => deleteOrder(order._id)}>DELETE</button>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={() => deleteOrder(order._id)}
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                    &nbsp; DELETE
+                  </button>
                 </td>
               </tr>
             ))}
