@@ -8,13 +8,13 @@ const Order = () => {
   const [orders, setOrder] = useState([]);
   //   console.log(orders);
   useEffect(() => {
-    fetch("http://localhost:5000/allOrder")
+    fetch("https://warm-lake-41078.herokuapp.com/allOrder")
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, []);
 
   const deleteOrder = (id) => {
-    fetch(`http://localhost:5000/orderDelete/${id}`, {
+    fetch(`https://warm-lake-41078.herokuapp.com/orderDelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

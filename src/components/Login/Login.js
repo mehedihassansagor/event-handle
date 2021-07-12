@@ -46,7 +46,7 @@ const Login = () => {
     console.log("google click");
   };
   useEffect(() => {
-    fetch("http://localhost:5000/adminDetails")
+    fetch("https://warm-lake-41078.herokuapp.com/adminDetails")
       .then((res) => res.json())
       .then((data) => setAdmins(data));
   }, []);

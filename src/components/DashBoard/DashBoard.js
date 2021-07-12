@@ -26,7 +26,7 @@ const DashBoard = () => {
       time: today,
     };
     console.log(order)
-    const url = `http://localhost:5000/order`;
+    const url = `https://warm-lake-41078.herokuapp.com/order`;
     console.log(order);
     fetch(url, {
       method: "POST",
@@ -38,7 +38,7 @@ const DashBoard = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/event")
+    fetch("https://warm-lake-41078.herokuapp.com/event")
       .then((res) => res.json())
       .then((data) => setService(data));
   }, [service.name]);

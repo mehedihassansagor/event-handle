@@ -6,13 +6,13 @@ import Sidebar from "./../Sidebar/Sidebar";
 const ManageService = () => {
   const [services, setService] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/event")
+    fetch("https://warm-lake-41078.herokuapp.com/event")
       .then((res) => res.json())
       .then((data) => setService(data));
   }, [services.name]);
 
   const deleteOrder = (id) => {
-    fetch(`http://localhost:5000/serviceDelete/${id}`, {
+    fetch(`https://warm-lake-41078.herokuapp.com/serviceDelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

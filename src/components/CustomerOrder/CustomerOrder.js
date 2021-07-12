@@ -13,13 +13,13 @@ const CustomerOrder = () => {
 
   //   console.log(orders);
   useEffect(() => {
-    fetch(`http://localhost:5000/customerOrderItem?email=` + loggedInUser.email)
+    fetch(`https://warm-lake-41078.herokuapp.com/customerOrderItem?email=` + loggedInUser.email)
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [loggedInUser.email]);
 
   const deleteOrder = (id) => {
-    fetch(`http://localhost:5000/orderDelete/${id}`, {
+    fetch(`https://warm-lake-41078.herokuapp.com/orderDelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
