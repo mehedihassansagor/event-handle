@@ -1,4 +1,4 @@
-live site :https://event-manage-48917.web.app/
+live site :https://event-manager-2a585.web.app/
 
 
 	Make your event more special by our team.
